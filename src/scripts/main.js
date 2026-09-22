@@ -5,13 +5,7 @@ const logo = document.querySelector('.logo');
 
 const promise1 = new Promise((resolve, reject) => {
   logo.addEventListener('click', () => {
-    resolve(() => {
-      const message = document.createElement('div');
-
-      message.className = 'message';
-      message.textContent = 'Promise was resolved!';
-      document.body.append(message);
-    });
+    resolve();
   });
 });
 
@@ -21,19 +15,38 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise2.catch(() => {
-  const message = document.createElement('div');
+promise1
+  .then(() => {
+    const message = document.createElement('div');
 
-  message.className = 'message error-message';
-  message.textContent = 'Promise was rejected!';
+    message.className = 'message';
+    message.textContent = 'Promise was resolved!';
 
-  document.body.append(message);
-});
+    document.body.append(message);
+  })
+  .catch(() => {
+    const message = document.createElement('div');
 
-promise1.then((successFunction) => {
-  successFunction();
-});
+    message.className = 'message error-message';
+    message.textContent = 'Promise was rejected!';
 
-promise2.catch((errorFunction) => {
-  errorFunction();
-});
+    document.body.append(message);
+  });
+
+promise2
+  .then(() => {
+    const message = document.createElement('div');
+
+    message.className = 'message';
+    message.textContent = 'Promise was resolved!';
+
+    document.body.append(message);
+  })
+  .catch(() => {
+    const message = document.createElement('div');
+
+    message.className = 'message error-message';
+    message.textContent = 'Promise was rejected!';
+
+    document.body.append(message);
+  });
